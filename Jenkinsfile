@@ -18,7 +18,7 @@ pipeline {
                    sh "docker login -u mrofficialnah -p ${hubPwd}"
                    sh "docker push mrofficialnah/myproject:0.0.2"
                 }    
-             }
+            }
         } 
         stage('Docker Deploy') {
             steps {
