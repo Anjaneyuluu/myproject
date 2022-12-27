@@ -7,7 +7,6 @@ pipeline {
                 sh " mvn clean package"
             }
         }
-        
         stage('Docker Build '){
             steps{
                 sh " docker build -t mrofficialnah/myproject:0.0.2 ."
@@ -20,8 +19,7 @@ pipeline {
                    sh "docker push mrofficialnah/myproject:0.0.2"
               }    
             }
-         }
-        
+        } 
         stage('Docker Deploy') {
             steps {
                 sshagent(['docker-host']) {
