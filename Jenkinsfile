@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Docker Build '){
             steps{
-                sh " docker build -t mrofficialnah/myproject:${commit_id()} ."
+                sh " docker build . -t mrofficialnah/myproject:${commit_id()} "
                 }
             }
         stage ('Docker push') {
