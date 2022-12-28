@@ -34,5 +34,6 @@ pipeline {
     }
 }
 def get_latest_commit(){
-        return  sh returnStdout: true, script: 'git rev-parse HEAD'
+        id = sh returnStdout: true, script: 'git rev-parse HEAD'
+        return id
  }
