@@ -33,7 +33,7 @@ pipeline {
         
     }
 }
-def get_latest_commit(){
+def commit_id(){
         id = sh returnStdout: true, script: 'git rev-parse HEAD'
         return id
  }
