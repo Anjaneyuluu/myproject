@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Docker Build '){
             steps{
-                sh " docker build -t mrofficialnah/myproject:${env.BUILD_NUMBER} ."
+                sh " docker build -t mrofficialnah/myproject:${commit_id()} ."
                 }
             }
         stage ('Docker push') {
@@ -17,7 +17,7 @@ pipeline {
                withCredentials([string(credentialsId: 'Docker-Hub', variable: 'hubPwd')])
                    {             
                    sh "docker login -u mrofficialnah -p ${hubPwd}"
-                   sh "docker push mrofficialnah/myproject:${env.BUILD_NUMBER}"
+                   sh "docker push mrofficialnah/myproject:${commit_id()}"
                 }    
             }
         }
@@ -25,7 +25,7 @@ pipeline {
             steps {
                 sshagent(['docker-host']) {
                     sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.33.135 docker rm -f myproject"
-                    sh "ssh ec2-user@172.31.33.135 docker run -d -p 8084:8080 --name myproject mrofficialnah/myproject:${env.BUILD_NUMBER}"
+                    sh "ssh ec2-user@172.31.33.135 docker run -d -p 8084:8080 --name myproject mrofficialnah/myproject:${commit_id()}"
                 }
             }
             
