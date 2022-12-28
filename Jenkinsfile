@@ -24,7 +24,7 @@ pipeline {
         stage('Docker Deploy') {
             steps {
                 sshagent(['docker-host']) {
-                    sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.33.135 docker run -d -p 8084:8080 --name myproject4 mrofficialnah/myproject:${env.BUILD_NUMBER}"
+                    sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.33.135 docker run -d -p 8084:8080 --name myproject6 mrofficialnah/myproject:${env.BUILD_NUMBER}"
                 }
             }
             
